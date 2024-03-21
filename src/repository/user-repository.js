@@ -29,19 +29,20 @@ class UserRepository {
             throw error;
         }
     }
-}
-//     async getById(userId) {
-//         try {
-//             const user = await User.findByPk(userId, {
-//                 attributes: ['email', 'id']
-//             });
-//             return user;
-//         } catch (error) {
-//             console.log("Something went wrong on repository layer");
-//             throw error;
-//         }
-//     }
 
+
+    async getById(userId) {
+        try {
+            const user = await User.findByPk(userId, {
+                attributes: ['email', 'id']
+            });
+            return user;
+        } catch (error) {
+            console.log("Something went wrong on repository layer");
+            throw error;
+        }
+    }
+}
 //     async getByEmail(userEmail) {
 //         try {
 //             const user = await User.findOne({where: {
