@@ -1,4 +1,4 @@
-const { User } = require('../models/index');
+const { User, Role } = require('../models/index');
 // const ValidationError = require('../utils/validation-error');
 
 class UserRepository {
@@ -30,7 +30,6 @@ class UserRepository {
         }
     }
 
-
     async getById(userId) {
         try {
             const user = await User.findByPk(userId, {
@@ -42,33 +41,33 @@ class UserRepository {
             throw error;
         }
     }
-}
-//     async getByEmail(userEmail) {
-//         try {
-//             const user = await User.findOne({where: {
-//                 email: userEmail
-//             }});
-//             return user;
-//         } catch (error) {
-//             console.log("Something went wrong on repository layer");
-//             throw error;
-//         }
-//     }
 
-//     async isAdmin(userId) {
-//         try {
-//             const user = await User.findByPk(userId);
-//             const adminRole = await Role.findOne({
-//                 where: {
-//                     name: 'ADMIN'
-//                 }
-//             });
-//             return user.hasRole(adminRole);
-//         } catch (error) {
-//             console.log("Something went wrong on repository layer");
-//             throw error;
-//         }
-//     }
-// }
+    async getByEmail(userEmail) {
+        try {
+            const user = await User.findOne({where: {
+                email: userEmail
+            }});
+            return user;
+        } catch (error) {
+            console.log("Something went wrong on repository layer");
+            throw error;
+        }
+    }
+
+    async isAdmin(userId) {
+        try {
+            const user = await User.findByPk(userId);
+            const adminRole = await Role.findOne({
+                where: {
+                    name: 'ADMIN'
+                }
+            });
+            return user.hasRole(adminRole);
+        } catch (error) {
+            console.log("Something went wrong on repository layer");
+            throw error;
+        }
+    }
+}
 
 module.exports = UserRepository;
